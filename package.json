@@ -1,0 +1,50 @@
+{
+  "name": "metagraph-node",
+  "version": "0.0.0",
+  "description": "A Metagraph Implementation in Node",
+  "main": "src/index.js",
+  "license": "Proprietary",
+  "private": true,
+  "author": {
+    "name": "Metagraph Team",
+    "email": "team@metagraph.io"
+  },
+  "bugs": {
+    "url": "https://github.com/openmg/metagraph-node/issues"
+  },
+  "homepage": "https://github.com/openmg/metagraph-node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openmg/metagraph-node"
+  },
+  "keywords": [
+    "graph",
+    "database",
+    "tinkerpop",
+    "gremlin",
+    "traversals"
+  ],
+  "dependencies": {
+    "babel-polyfill": "^6.16.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "xo": "^0.17.1"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "envs": [
+      "node"
+    ]
+  }
+}
