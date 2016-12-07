@@ -25,26 +25,45 @@
     "traversals"
   ],
   "dependencies": {
-    "babel-polyfill": "^6.16.0"
+    "babel-polyfill": "^6.16.0",
+    "lodash": "^4.17.2"
   },
   "devDependencies": {
     "ava": "^0.17.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.18.0",
+    "babel-eslint": "^7.1.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.1.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
     "xo": "^0.17.1"
   },
   "scripts": {
     "test": "ava"
   },
   "xo": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
     "esnext": true,
     "space": true,
-    "envs": [
+    "env": [
+      "browser",
       "node"
-    ]
+    ],
+    "plugins": [
+      "flowtype-errors",
+      "promise"
+    ],
+    "rules": {
+      "complexity": 0,
+      "import/no-extraneous-dependencies": 0,
+      "new-cap": 0,
+      "unicorn/filename-case": 0
+    }
   }
 }
