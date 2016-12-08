@@ -28,7 +28,9 @@
     "babel-polyfill": "^6.16.0",
     "es6-enum": "^1.1.0",
     "lodash": "^4.17.2",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "path": "^0.12.7",
+    "pouchdb-node": "^6.0.7"
   },
   "devDependencies": {
     "ava": "^0.17.0",
@@ -47,6 +49,9 @@
   },
   "scripts": {
     "test": "ava"
+  },
+  "ava": {
+    "require": ["babel-register"]
   },
   "xo": {
     "parser": "babel-eslint",

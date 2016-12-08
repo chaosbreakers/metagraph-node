@@ -8,10 +8,11 @@ import Vertex from './Vertex';
 import Edge from './Edge';
 
 class Graph {
+  id: String;
   vertices: Map<String, Vertex>;
   edges: Map<String, Edge>;
 
-  constructer() {
+  constructor() {
     this.vertices = new Map();
     this.edges = new Map();
     this.idManager = new Graph.IdManager();
@@ -21,7 +22,7 @@ class Graph {
     return new Graph();
   }
 
-  IdManager = class {
+  static IdManager = class {
     static getNextId() {
       return uuid.v4();
     }

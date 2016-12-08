@@ -6,8 +6,14 @@ import Graph from './structure/Graph';
 class Metagraph {
   graphs: Map;
 
-  constructer() {
+  constructor() {
     this.graphs = new Map();
+  }
+
+  static METAGRAPH_ID = 'metagraph';
+
+  getGraphs() {
+    return this.graphs;
   }
 
   addGraph() {
@@ -17,7 +23,7 @@ class Metagraph {
   }
 
   deleteGraph(gid: String) {
-    this.graphs.delete(gid);
+    this.graphs.remove(gid);
   }
 }
 
