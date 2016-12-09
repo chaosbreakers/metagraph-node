@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "babel-polyfill": "^6.16.0",
+    "bluebird": "3.4.6",
     "es6-enum": "^1.1.0",
     "lodash": "^4.17.2",
     "node-uuid": "^1.4.7",
@@ -37,18 +38,24 @@
     "babel-cli": "^6.16.0",
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.1.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-flowtype": "^2.29.1",
+    "eslint-plugin-flowtype-errors": "^1.5.0",
     "eslint-plugin-import": "^2.1.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^6.7.1",
+    "flow-bin": "^0.36.0",
     "xo": "^0.17.1"
   },
   "scripts": {
-    "test": "ava"
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "test": "xo && ava"
   },
   "ava": {
     "require": ["babel-register"]
@@ -63,10 +70,12 @@
       "node"
     ],
     "plugins": [
+      "flowtype",
       "flowtype-errors",
       "promise"
     ],
     "rules": {
+      "arrow-parens": 0,
       "complexity": 0,
       "import/no-extraneous-dependencies": 0,
       "new-cap": 0,

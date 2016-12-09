@@ -1,5 +1,5 @@
 import 'babel-polyfill';
 
-import Metagraph from './metagraph';
+import Metagraph from './Metagraph';
 
 export default Metagraph;

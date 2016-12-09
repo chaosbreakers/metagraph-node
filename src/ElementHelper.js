@@ -5,6 +5,11 @@ export const attachProperties = (element, args) => {
   _.each(args, pair => element.property(...pair));
 };
 
+export const validateLabel = (label) => {
+  if (!label) {
+    throw new Error('Label cannot be empty');
+  }
+};
 
 export const validateProperty = (key, value) => {
   if (!value) {

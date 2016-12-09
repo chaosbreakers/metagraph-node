@@ -8,19 +8,18 @@ import Backend from './Backend';
 import Property from './Property';
 
 class Vertex extends Element {
-  id: String;
-  label: String;
+  id: string;
+  label: string;
   graph: Graph;
-  properties: Map;
+  properties: Object;
   file: File;
-  inE: Map<String, Array<Edge>>;
-  outE: Map<String, Array<Edge>>;
+  inE: Map<string, Array<Edge>>;
+  outE: Map<string, Array<Edge>>;
 
-  constructor(id, label, graph) {
+  constructor(id: string, label: string, graph: Graph) {
     super(id, label, graph);
     this.outE = new Map();
     this.inEdges = new Map();
-    this.iterators = new Vertex.Iterators();
   }
 
   /**

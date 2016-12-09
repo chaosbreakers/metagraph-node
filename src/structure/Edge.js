@@ -6,12 +6,12 @@ import Property from './Property';
 import Vertex from './Vertex';
 
 class Edge extends Element {
-  id: String;
-  label: String;
+  id: string;
+  label: string;
   graph: Graph;
-  properties: Map;
-  inV: Map<String, Array<Vertex>>;
-  outV: Map<String, Array<Vertex>>;
+  properties: Object;
+  inV: Map<string, Array<Vertex>>;
+  outV: Map<string, Array<Vertex>>;
 
   constructor(id, label, graph) {
     super(id, label, graph);

@@ -3,8 +3,8 @@ import Graph from './Graph';
 // import GraphHelper from './GraphHelper';
 
 class Element {
-  id: String;
-  label: String;
+  id: string;
+  label: string;
   graph: Graph;
   properties: Map;
 

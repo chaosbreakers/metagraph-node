@@ -4,9 +4,11 @@ import uuid from 'node-uuid';
 import Graph from './structure/Graph';
 
 class Metagraph {
-  graphs: Map;
+  metagraph: Graph;
+  graphs: Map<string, Graph>;
 
   constructor() {
+    this.metagraph = new Graph(Metagraph.METAGRAPH_ID);
     this.graphs = new Map();
   }
 
@@ -18,12 +20,12 @@ class Metagraph {
 
   addGraph() {
     const gid = uuid.v4();
-    const graph = new Graph();
+    const graph = new Graph(gid);
     this.graphs.set(gid, graph);
   }
 
-  deleteGraph(gid: String) {
-    this.graphs.remove(gid);
+  removeGraph(gid: string) {
+    this.graphs.delete(gid);
   }
 }
 
