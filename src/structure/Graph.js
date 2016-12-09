@@ -3,7 +3,7 @@
 import uuid from 'node-uuid';
 
 import * as ElementHelper from '../ElementHelper';
-import GraphTraversal from '../process/GraphTraversal';
+import GraphTraversalSource from '../process/GraphTraversalSource';
 import Backend from './Backend';
 import Vertex from './Vertex';
 import Edge from './Edge';
@@ -29,26 +29,6 @@ class Graph {
     return new Graph(gid);
   }
 
-  V() {
-    const traversal = new GraphTraversal(this);
-
-    return traversal;
-  }
-
-  v(id: string) {
-    if (!id) {
-      throw new Error('throw Graph.Exceptions.elementNotFound(Vertex.class, null);');
-    }
-
-    const vertex = this.vertices.get(id);
-
-    if (!vertex) {
-      throw new Error('Graph.Exceptions.elementNotFound(Vertex.class, id);');
-    } else {
-      return vertex;
-    }
-  }
-
   addVertex(label: string): Vertex {
     ElementHelper.validateLabel(label);
     const vid = Graph.getNextId();
@@ -61,6 +41,10 @@ class Graph {
         reject(err);
       });
     });
+  }
+
+  traversal() {
+    return new GraphTraversalSource(this);
   }
 
 }
