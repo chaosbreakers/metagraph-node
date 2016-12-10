@@ -4,11 +4,13 @@ import uuid from 'node-uuid';
 import Graph from './structure/Graph';
 
 class Metagraph {
+  hostName: string;
   metagraph: Graph;
   graphs: Map<string, Graph>;
 
-  constructor() {
-    this.metagraph = new Graph(Metagraph.METAGRAPH_ID);
+  constructor(hostName: string = '') {
+    this.hostName = hostName;
+    this.metagraph = new Graph(Metagraph.METAGRAPH_ID, hostName);
     this.graphs = new Map();
   }
 

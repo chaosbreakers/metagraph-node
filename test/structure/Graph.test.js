@@ -21,4 +21,11 @@ test('check backend', async (t) => {
 test('add vertex', async (t) => {
   const v = await graph.addVertex(VERTEX_LABEL_PERSON);
   t.is(v.label, VERTEX_LABEL_PERSON);
+
+  const props = {
+    name: 'zizai',
+  };
+  await v.setProperties(props);
+  const vp = await v.getProperties();
+  t.deepEqual(vp, props);
 });

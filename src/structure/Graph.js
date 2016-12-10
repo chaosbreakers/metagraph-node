@@ -14,9 +14,9 @@ class Graph {
   vertices: Map<string, Vertex>;
   edges: Map<string, Edge>;
 
-  constructor(gid: string) {
+  constructor(gid: string, hostName: string = '') {
     this.id = gid;
-    this.backend = new Backend(gid);
+    this.backend = new Backend(gid, hostName);
     this.vertices = new Map();
     this.edges = new Map();
   }
@@ -29,7 +29,7 @@ class Graph {
     return new Graph(gid);
   }
 
-  addVertex(label: string): Vertex {
+  async addVertex(label: string) {
     ElementHelper.validateLabel(label);
     const vid = Graph.getNextId();
     return new Promise((resolve, reject) => {

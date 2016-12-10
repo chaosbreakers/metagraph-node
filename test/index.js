@@ -9,7 +9,7 @@ test.before((t) => {
   t.pass();
 });
 
-test('get graphs', async (t) => {
+test('Metagraph', async (t) => {
   const graphs = await mg.getGraphs();
   t.true(graphs.size >= 0);
 });
