@@ -12,13 +12,13 @@ test.before(t => {
   t.pass();
 });
 
-test('check backend', async (t) => {
+test('Backend', async (t) => {
   const dbInfo = await graph.backend.db.info();
   t.is(dbInfo.db_name, graph.backend.dbName);
   t.true(dbInfo.doc_count >= 0);
 });
 
-test('add vertex', async (t) => {
+test('Vertex', async (t) => {
   const v = await graph.addVertex(VERTEX_LABEL_PERSON);
   t.is(v.label, VERTEX_LABEL_PERSON);
 
@@ -28,4 +28,12 @@ test('add vertex', async (t) => {
   await v.setProperties(props);
   const vp = await v.getProperties();
   t.deepEqual(vp, props);
+
+  const question = 'blue pill or red pill?';
+  const file = Buffer.from(question);
+  const fileName = 'question.txt';
+  const fileType = 'text/plain';
+  await v.saveFile(file, fileName, fileType);
+  const vf = await v.getFile();
+  t.is(vf.toString(), question);
 });

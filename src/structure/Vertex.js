@@ -10,7 +10,7 @@ class Vertex extends Element {
   label: string;
   graph: Graph;
   properties: Object;
-  file: File;
+  file: Buffer;
   inE: Map<string, Array<Edge>>;
   outE: Map<string, Array<Edge>>;
 
@@ -18,6 +18,16 @@ class Vertex extends Element {
     super(id, label, graph);
     this.outE = new Map();
     this.inEdges = new Map();
+  }
+
+  async getFile() {
+    this.file = await this.graph.backend.getVertexFile(this.id);
+    return this.file;
+  }
+
+  async saveFile(file: Buffer, fileName:string, fileType: string) {
+    await this.graph.backend.saveVertexFile(this.id, file, fileName, fileType);
+    this.file = file;
   }
 
   async getProperties() {

@@ -1,7 +1,9 @@
 // @flow
 import Promise from 'bluebird';
-import path from 'path';
+import _ from 'lodash';
 import PouchDB from 'pouchdb-node';
+
+import BackendHelper from './BackendHelper';
 
 class Backend {
   db: PouchDB;
@@ -10,7 +12,7 @@ class Backend {
   hostName: string;
 
   constructor(gid: string, hostName: string = '') {
-    this.dbName = path.join(Backend.DB_DIR, gid);
+    this.dbName = BackendHelper.makeDBName(gid);
     this.db = new PouchDB(this.dbName);
     this.hostName = hostName;
     if (hostName) {
@@ -19,9 +21,7 @@ class Backend {
     }
   }
 
-  static DB_DIR = './db/';
-
-  addVertex(vid: string, label: string) {
+  async addVertex(vid: string, label: string) {
     return new Promise((resolve, reject) => {
       this.db.put({
         _id: vid,
@@ -34,7 +34,7 @@ class Backend {
     });
   }
 
-  removeVertex(vid: string) {
+  async removeVertex(vid: string) {
     return new Promise((resolve, reject) => {
       this.db.get(vid)
         .then(doc => this.db.remove(doc))
@@ -43,7 +43,40 @@ class Backend {
     });
   }
 
-  getVertexProperties(vid: string) {
+  async getVertexFile(vid: string) {
+    return new Promise((resolve, reject) => {
+      this.db.get(vid).then(doc => {
+        this.db.getAttachment(vid, _.keys(doc._attachments)[0])
+          .then(resolve)
+          .catch(reject);
+      });
+    });
+  }
+
+  async saveVertexFile(vid: string, file: Buffer, fileName: string, fileType: string) {
+    return new Promise((resolve, reject) => {
+      this.db.get(vid).then(doc => {
+        const existingFileName = _.keys(doc._attachments)[0];
+        if (existingFileName) {
+          reject({
+            error: {
+              error: 'file exists',
+              reason: 'one vertex for one file',
+            },
+          });
+        }
+        this.db.putAttachment(
+          vid,
+          fileName,
+          doc._rev,
+          file,
+          fileType,
+        ).then(resolve).catch(reject);
+      });
+    });
+  }
+
+  async getVertexProperties(vid: string) {
     return new Promise((resolve, reject) => {
       this.db.get(vid).then(doc => {
         resolve(doc.properties);
@@ -51,7 +84,7 @@ class Backend {
     });
   }
 
-  setVertexProperties(vid: string, props: Object) {
+  async setVertexProperties(vid: string, props: Object) {
     return new Promise((resolve, reject) => {
       this.db.get(vid).then(doc => {
         this.db.put({
