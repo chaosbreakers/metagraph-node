@@ -1,21 +1,20 @@
 {
   "name": "metagraph-node",
   "version": "0.0.0",
-  "description": "A Metagraph Implementation in Node",
-  "main": "src/index.js",
-  "license": "Proprietary",
-  "private": true,
+  "description": "Metagraph on Node",
+  "main": "dist/index.js",
+  "license": "Apache 2.0",
   "author": {
-    "name": "Metagraph Team",
-    "email": "team@metagraph.io"
-  },
-  "bugs": {
-    "url": "https://github.com/openmg/metagraph-node/issues"
+    "name": "song",
+    "email": "song@metagraph.io"
   },
   "homepage": "https://github.com/openmg/metagraph-node",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openmg/metagraph-node"
+    "url": "https://github.com/openmg/metagraph-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openmg/metagraph-node/issues"
   },
   "keywords": [
     "graph",
@@ -54,7 +53,9 @@
     "xo": "^0.17.1"
   },
   "scripts": {
+    "build": "babel src --out-dir dist",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "prepublish": "npm run build",
     "test": "xo && ava"
   },
   "ava": {
@@ -65,10 +66,7 @@
     "extends": "airbnb",
     "esnext": true,
     "space": true,
-    "env": [
-      "browser",
-      "node"
-    ],
+    "envs": ["node"],
     "plugins": [
       "flowtype",
       "flowtype-errors",
