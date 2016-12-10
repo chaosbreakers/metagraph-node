@@ -9,15 +9,18 @@ class Backend {
   db: PouchDB;
   dbName: string;
   dbRemote: PouchDB;
-  hostName: string;
+  dbRemoteAuth: Object;
+  dbRemoteHost: string;
 
-  constructor(gid: string, hostName: string = '') {
+  constructor(gid: string, dbRemoteHost: string = '', dbRemoteAuth: Object = {}) {
     this.dbName = BackendHelper.makeDBName(gid);
     this.db = new PouchDB(this.dbName);
-    this.hostName = hostName;
-    if (hostName) {
-      this.dbRemote = new PouchDB(hostName + gid);
-      this.db.replicateTo(this.dbRemote);
+    if (dbRemoteHost) {
+      this.dbRemote = new PouchDB(dbRemoteHost + gid, {
+        auth: dbRemoteAuth,
+      });
+      this.dbRemoteAuth = dbRemoteAuth;
+      this.dbRemoteHost = dbRemoteHost;
     }
   }
 
@@ -94,6 +97,15 @@ class Backend {
         }).then(resolve)
           .catch(reject);
       });
+    });
+  }
+
+  async syncOnce() {
+    return new Promise((resolve, reject) => {
+      this.db.replicate.to(this.dbRemote, {
+        live: false,
+      }).on('complete', resolve)
+        .on('error', reject);
     });
   }
 }

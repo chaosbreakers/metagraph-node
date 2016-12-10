@@ -8,7 +8,11 @@ import {
 let graph;
 
 test.before(t => {
-  graph = new Graph(TEST_GRAPH_ID);
+  graph = new Graph(
+    TEST_GRAPH_ID,
+    'http://localhost:5984/',
+    { username: 'mgd', password: 'mgd' },
+  );
   t.pass();
 });
 
@@ -16,6 +20,9 @@ test('Backend', async (t) => {
   const dbInfo = await graph.backend.db.info();
   t.is(dbInfo.db_name, graph.backend.dbName);
   t.true(dbInfo.doc_count >= 0);
+
+  await graph.syncOnce();
+  t.pass();
 });
 
 test('Vertex', async (t) => {

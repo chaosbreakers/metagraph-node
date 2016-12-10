@@ -14,9 +14,9 @@ class Graph {
   vertices: Map<string, Vertex>;
   edges: Map<string, Edge>;
 
-  constructor(gid: string, hostName: string = '') {
+  constructor(gid: string, remoteHost: string = '', remoteAuth: Object = {}) {
     this.id = gid;
-    this.backend = new Backend(gid, hostName);
+    this.backend = new Backend(gid, remoteHost, remoteAuth);
     this.vertices = new Map();
     this.edges = new Map();
   }
@@ -41,6 +41,10 @@ class Graph {
         reject(err);
       });
     });
+  }
+
+  async syncOnce() {
+    return this.backend.syncOnce();
   }
 
   traversal() {
