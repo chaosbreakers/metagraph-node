@@ -1,6 +1,6 @@
 {
   "name": "metagraph-node",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Metagraph on Node",
   "main": "dist/index.js",
   "license": "Apache 2.0",
@@ -59,14 +59,18 @@
     "test": "xo && ava"
   },
   "ava": {
-    "require": ["babel-register"]
+    "require": [
+      "babel-register"
+    ]
   },
   "xo": {
     "parser": "babel-eslint",
     "extends": "airbnb",
     "esnext": true,
     "space": true,
-    "envs": ["node"],
+    "envs": [
+      "node"
+    ],
     "plugins": [
       "flowtype",
       "flowtype-errors",
