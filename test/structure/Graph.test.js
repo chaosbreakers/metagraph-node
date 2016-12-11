@@ -10,8 +10,10 @@ let graph;
 test.before(t => {
   graph = new Graph(
     TEST_GRAPH_ID,
+    /*
     'http://localhost:5984/',
     { username: 'mgd', password: 'mgd' },
+    */
   );
   t.pass();
 });
@@ -21,8 +23,10 @@ test('Backend', async (t) => {
   t.is(dbInfo.db_name, graph.backend.dbName);
   t.true(dbInfo.doc_count >= 0);
 
+  /* TODO integration test
   await graph.syncOnce();
   t.pass();
+  */
 });
 
 test('Vertex', async (t) => {

@@ -1,5 +1,5 @@
 // @flow
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 
 import Graph from './structure/Graph';
 

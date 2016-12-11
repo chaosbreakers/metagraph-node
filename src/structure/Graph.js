@@ -1,6 +1,6 @@
 // @flow
 // import _ from 'lodash';
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 
 import * as ElementHelper from '../ElementHelper';
 import GraphTraversalSource from '../process/GraphTraversalSource';
