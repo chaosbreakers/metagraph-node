@@ -1,6 +1,6 @@
 // @flow
 // import _ from 'lodash';
-import uuid from 'uuid';
+import cuid from 'cuid';
 
 import * as ElementHelper from '../ElementHelper';
 import GraphTraversalSource from '../process/GraphTraversalSource';
@@ -22,7 +22,7 @@ class Graph {
   }
 
   static getNextId() {
-    return uuid.v4();
+    return cuid();
   }
 
   static open(gid: string) {

@@ -1,5 +1,5 @@
 // @flow
-import uuid from 'uuid';
+import cuid from 'cuid';
 
 import Graph from './structure/Graph';
 
@@ -21,7 +21,7 @@ class Metagraph {
   }
 
   addGraph() {
-    const gid = uuid.v4();
+    const gid = cuid();
     const graph = new Graph(gid);
     this.graphs.set(gid, graph);
   }
