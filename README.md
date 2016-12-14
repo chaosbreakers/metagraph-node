@@ -8,7 +8,7 @@ Add `npm` dependency in `package.json`.
 {
   "name": "awesome-project",
   "dependencies": {
-    "metagraph-node": "^0.1.0"
+    "metagraph-node": "^0.2.0"
   }
 }
 ```
