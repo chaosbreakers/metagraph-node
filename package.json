@@ -33,7 +33,7 @@
     "pouchdb-node": "^6.1.0"
   },
   "devDependencies": {
-    "ava": "^0.18.1",
+    "ava": "^0.21.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.1.0",
