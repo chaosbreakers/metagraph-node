@@ -50,7 +50,7 @@
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^6.7.1",
     "flow-bin": "^0.39.0",
-    "xo": "^0.17.1"
+    "xo": "^0.20.3"
   },
   "scripts": {
     "build": "babel src --out-dir dist",
