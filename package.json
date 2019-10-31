@@ -49,7 +49,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^6.7.1",
-    "flow-bin": "^0.39.0",
+    "flow-bin": "^0.111.0",
     "xo": "^0.17.1"
   },
   "scripts": {
