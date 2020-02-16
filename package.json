@@ -30,7 +30,7 @@
     "es6-enum": "^1.1.0",
     "lodash": "^4.17.2",
     "path": "^0.12.7",
-    "pouchdb-node": "^6.1.0"
+    "pouchdb-node": "^7.2.1"
   },
   "devDependencies": {
     "ava": "^0.18.1",
